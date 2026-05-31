@@ -1,0 +1,129 @@
+---
+const features = [
+  {
+    title: 'Paid Memberships',
+    description: 'Recurring subscriptions and tiered access with Stripe checkout.',
+    icon: '💳',
+    span: 'col-span-1 row-span-1',
+    accent: 'from-electric-teal/10 to-electric-teal/5',
+  },
+  {
+    title: 'Community Discussions',
+    description: 'Private, member-only spaces for conversations and connection.',
+    icon: '💬',
+    span: 'col-span-1 row-span-1 md:col-span-2',
+    accent: 'from-soft-lilac/10 to-soft-lilac/5',
+  },
+  {
+    title: 'Live Sessions & Events',
+    description: 'Host live experiences and event access for your members.',
+    icon: '🎥',
+    span: 'col-span-1 row-span-1',
+    accent: 'from-coral-bliss/10 to-coral-bliss/5',
+  },
+  {
+    title: 'Content Libraries',
+    description: 'Deliver courses, guides, and exclusive digital content.',
+    icon: '📚',
+    span: 'col-span-1 row-span-1 md:col-span-2',
+    accent: 'from-electric-teal/10 to-soft-lilac/5',
+  },
+  {
+    title: 'Join Pages & SMS Consent',
+    description: 'Compliant opt-in flows for member onboarding and messaging.',
+    icon: '📱',
+    span: 'col-span-1 row-span-1',
+    accent: 'from-soft-lilac/10 to-coral-bliss/5',
+  },
+  {
+    title: 'Stripe Checkout',
+    description: 'Secure payments for subscriptions, events, and digital products.',
+    icon: '⚡',
+    span: 'col-span-1 row-span-1',
+    accent: 'from-coral-bliss/10 to-electric-teal/5',
+  },
+];
+---
+
+<section id="features" class="py-24 lg:py-32">
+  <div class="mx-auto max-w-6xl px-6 lg:px-8">
+    <div class="mb-16 text-center">
+      <span class="text-sm font-semibold uppercase tracking-widest text-electric-teal">Features</span>
+      <h2 class="mt-3 font-display text-3xl font-bold text-midnight-blue sm:text-4xl lg:text-5xl">
+        Everything you need to run a paid community
+      </h2>
+      <p class="mx-auto mt-4 max-w-2xl text-lg text-medium-gray">
+        From memberships to live sessions — built for creators who want more than a link-in-bio.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-3 md:grid-rows-2">
+      {
+        features.map((feature, i) => (
+          <article
+            class:list={[
+              'group relative overflow-hidden rounded-2xl border border-midnight-blue/5 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg hover:shadow-midnight-blue/5',
+              feature.span,
+            ]}
+            data-animate="fade-up"
+            style={`animation-delay: ${i * 80}ms`}
+          >
+            <div
+              class:list={[
+                'absolute inset-0 bg-linear-to-br opacity-0 transition group-hover:opacity-100',
+                feature.accent,
+              ]}
+            />
+            <div class="relative">
+              <span class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-arctic-white text-2xl shadow-sm">
+                {feature.icon}
+              </span>
+              <h3 class="font-display text-xl font-bold text-midnight-blue">{feature.title}</h3>
+              <p class="mt-2 leading-relaxed text-medium-gray">{feature.description}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in');
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: '-40px' }
+  );
+
+  document.querySelectorAll('[data-animate="fade-up"]').forEach((el) => {
+    el.classList.add('opacity-0', 'translate-y-6', 'transition-all', 'duration-700');
+    observer.observe(el);
+  });
+
+  document.addEventListener('astro:page-load', () => {
+    document.querySelectorAll('[data-animate="fade-up"]').forEach((el) => {
+      if (!el.classList.contains('opacity-0')) return;
+      observer.observe(el);
+    });
+  });
+</script>
+
+<style>
+  .animate-in {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-animate='fade-up'] {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+</style>

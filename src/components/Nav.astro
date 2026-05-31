@@ -1,0 +1,71 @@
+---
+interface Props {
+  legal?: boolean;
+}
+
+const { legal = false } = Astro.props;
+---
+
+<header
+  id="site-nav"
+  class="fixed top-0 z-40 w-full transition-all duration-300"
+>
+  <div class="nav-inner mx-auto flex max-w-6xl items-center justify-between px-6 py-5 lg:px-8">
+    <a href="/" class="font-display text-xl font-bold tracking-tight text-midnight-blue">
+      Atzora
+    </a>
+
+    {!legal && (
+      <nav class="hidden items-center gap-8 md:flex" aria-label="Main">
+        <a href="#features" class="text-sm font-medium text-midnight-blue transition hover:text-electric-teal">Features</a>
+        <a href="#product" class="text-sm font-medium text-midnight-blue transition hover:text-electric-teal">Product</a>
+        <a href="#how-it-works" class="text-sm font-medium text-midnight-blue transition hover:text-electric-teal">How it works</a>
+        <a href="#faq" class="text-sm font-medium text-midnight-blue transition hover:text-electric-teal">FAQ</a>
+      </nav>
+    )}
+
+    <div class="flex items-center gap-3">
+      <a
+        href="https://app.atzora.app"
+        class="hidden rounded-full border border-midnight-blue/10 bg-white/60 px-4 py-2 text-sm font-medium text-midnight-blue backdrop-blur-sm transition hover:border-electric-teal/30 hover:text-electric-teal sm:inline-flex"
+      >
+        Login
+      </a>
+      <a
+        href="mailto:support@atzora.app?subject=Book%20a%20Demo"
+        class="rounded-full bg-electric-teal px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-electric-teal/25 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-electric-teal/30"
+      >
+        Book Demo
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const nav = document.getElementById('site-nav');
+  if (nav) {
+    const onScroll = () => {
+      if (window.scrollY > 20) {
+        nav.classList.add('nav-scrolled');
+      } else {
+        nav.classList.remove('nav-scrolled');
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+</script>
+
+<style>
+  #site-nav.nav-scrolled {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(26, 40, 68, 0.05);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+
+  #site-nav.nav-scrolled .nav-inner {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+</style>

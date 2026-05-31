@@ -1,0 +1,20 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<div
+  class:list={[
+    'relative mx-auto w-[220px] overflow-hidden rounded-4xl border-4 border-midnight-blue/10 bg-midnight-blue p-2 shadow-2xl',
+    className,
+  ]}
+  aria-hidden="true"
+>
+  <div class="absolute left-1/2 top-2 h-5 w-20 -translate-x-1/2 rounded-full bg-midnight-blue/80"></div>
+  <div class="mt-6 overflow-hidden rounded-[1.25rem] bg-white">
+    <slot />
+  </div>
+</div>

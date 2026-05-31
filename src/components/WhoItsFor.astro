@@ -1,0 +1,21 @@
+---
+const audiences = ['Creators', 'Coaches', 'Educators', 'Community-led organizations'];
+---
+
+<section class="py-20">
+  <div class="mx-auto max-w-6xl px-6 text-center lg:px-8">
+    <h2 class="font-display text-3xl font-bold text-midnight-blue sm:text-4xl">Who it's for</h2>
+    <p class="mx-auto mt-4 max-w-xl text-lg text-medium-gray">
+      Built for anyone turning an audience into a thriving, paid community.
+    </p>
+    <div class="mt-10 flex flex-wrap justify-center gap-3">
+      {
+        audiences.map((audience) => (
+          <span class="rounded-full border border-electric-teal/20 bg-white px-5 py-2.5 text-sm font-semibold text-midnight-blue shadow-sm transition hover:border-electric-teal hover:bg-electric-teal/5 hover:shadow-md hover:shadow-electric-teal/10">
+            {audience}
+          </span>
+        ))
+      }
+    </div>
+  </div>
+</section>

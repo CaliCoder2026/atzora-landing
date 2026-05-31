@@ -1,0 +1,30 @@
+---
+const logos = [
+  'Studio Collective',
+  'Mindful Academy',
+  'Founders Guild',
+  'Creative Circle',
+  'Coach Labs',
+  'Educator Hub',
+  'Wellness Works',
+  'Community Co.',
+];
+---
+
+<section class="border-y border-midnight-blue/5 bg-white py-12">
+  <p class="mb-8 text-center text-sm font-medium uppercase tracking-widest text-medium-gray">
+    Trusted by creators &amp; community leaders
+  </p>
+  <div class="relative overflow-hidden">
+    <div class="animate-marquee flex w-max gap-12">
+      {[...logos, ...logos].map((name, i) => (
+        <span
+          key={`${name}-${i}`}
+          class="whitespace-nowrap font-display text-lg font-semibold text-midnight-blue/45"
+        >
+          {name}
+        </span>
+      ))}
+    </div>
+  </div>
+</section>

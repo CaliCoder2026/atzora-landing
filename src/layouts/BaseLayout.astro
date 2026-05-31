@@ -1,0 +1,73 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+  legal?: boolean;
+}
+
+const {
+  title,
+  description = 'Tools for creators, coaches, and organizations to run paid memberships, subscriptions, and private communities.',
+  canonical = 'https://atzora.app',
+  legal = false,
+} = Astro.props;
+
+const fullTitle = title.includes('Atzora') ? title : `${title} | Atzora`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content="https://atzora.app/og-image.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://atzora.app/og-image.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareApplication',
+      name: 'Atzora',
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Web',
+      description,
+      url: 'https://atzora.app',
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD',
+      },
+    })} />
+
+    <slot name="head" />
+  </head>
+  <body class="relative overflow-x-hidden">
+    <div class="noise-overlay pointer-events-none fixed inset-0 z-50 opacity-30" aria-hidden="true"></div>
+    <slot name="nav" />
+    <slot />
+    <slot name="footer" />
+  </body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>

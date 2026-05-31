@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero';
+import LogoMarquee from '../components/LogoMarquee.astro';
+import ValueProps from '../components/ValueProps.astro';
+import FeatureBento from '../components/FeatureBento.astro';
+import ProductShowcase from '../components/ProductShowcase';
+import HowItWorks from '../components/HowItWorks.astro';
+import WhoItsFor from '../components/WhoItsFor.astro';
+import Integrations from '../components/Integrations.astro';
+import Testimonials from '../components/Testimonials.astro';
+import FAQ from '../components/FAQ';
+import FinalCTA from '../components/FinalCTA.astro';
+---
+
+<BaseLayout title="Atzora - Creator Community Platform">
+  <Nav slot="nav" />
+  <main>
+    <Hero client:load />
+    <LogoMarquee />
+    <ValueProps />
+    <FeatureBento />
+    <ProductShowcase client:visible />
+    <HowItWorks />
+    <WhoItsFor />
+    <Integrations />
+    <Testimonials />
+    <FAQ client:visible />
+    <FinalCTA />
+  </main>
+  <Footer slot="footer" />
+</BaseLayout>

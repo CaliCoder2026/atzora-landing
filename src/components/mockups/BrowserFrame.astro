@@ -1,0 +1,28 @@
+---
+interface Props {
+  class?: string;
+  url?: string;
+}
+
+const { class: className = '', url = 'app.atzora.app/dashboard' } = Astro.props;
+---
+
+<div
+  class:list={[
+    'overflow-hidden rounded-2xl border border-midnight-blue/10 bg-white shadow-2xl shadow-midnight-blue/10',
+    className,
+  ]}
+  aria-hidden="true"
+>
+  <div class="flex items-center gap-2 border-b border-midnight-blue/5 bg-arctic-white px-4 py-3">
+    <span class="h-3 w-3 rounded-full bg-coral-bliss/80"></span>
+    <span class="h-3 w-3 rounded-full bg-soft-lilac/80"></span>
+    <span class="h-3 w-3 rounded-full bg-electric-teal/80"></span>
+    <div class="ml-3 flex-1 rounded-md bg-white px-3 py-1 text-xs text-medium-gray">
+      {url}
+    </div>
+  </div>
+  <div class="bg-white">
+    <slot />
+  </div>
+</div>

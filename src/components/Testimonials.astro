@@ -1,0 +1,64 @@
+---
+const testimonials = [
+  {
+    quote:
+      'Atzora gave us everything we needed to launch a paid wellness community in weeks, not months. The member portal feels premium.',
+    name: 'Sarah Chen',
+    role: 'Coach · Placeholder',
+    initials: 'SC',
+    color: 'from-electric-teal/30 to-electric-teal/10',
+  },
+  {
+    quote:
+      'Our educators love the content library and live session features. Stripe checkout just works — our members trust the experience.',
+    name: 'Marcus Rivera',
+    role: 'Educator · Placeholder',
+    initials: 'MR',
+    color: 'from-soft-lilac/30 to-soft-lilac/10',
+  },
+  {
+    quote:
+      'Finally a platform that treats creators as first-class. The dashboard gives us real visibility into our community growth.',
+    name: 'Jordan Blake',
+    role: 'Creator · Placeholder',
+    initials: 'JB',
+    color: 'from-coral-bliss/30 to-coral-bliss/10',
+  },
+];
+---
+
+<section class="py-24 lg:py-32">
+  <div class="mx-auto max-w-6xl px-6 lg:px-8">
+    <div class="mb-16 text-center">
+      <span class="text-sm font-semibold uppercase tracking-widest text-electric-teal">Testimonials</span>
+      <h2 class="mt-3 font-display text-3xl font-bold text-midnight-blue sm:text-4xl">
+        Loved by community builders
+      </h2>
+      <p class="mt-2 text-sm text-medium-gray">Placeholder testimonials — swap with real quotes when available</p>
+    </div>
+
+    <div class="grid gap-6 md:grid-cols-3">
+      {
+        testimonials.map((t) => (
+          <blockquote class="flex flex-col rounded-2xl border border-midnight-blue/5 bg-white p-8 shadow-sm">
+            <p class="flex-1 leading-relaxed text-medium-gray">&ldquo;{t.quote}&rdquo;</p>
+            <footer class="mt-6 flex items-center gap-3 border-t border-midnight-blue/5 pt-6">
+              <div
+                class:list={[
+                  'flex h-11 w-11 items-center justify-center rounded-full bg-linear-to-br font-display text-sm font-bold text-midnight-blue',
+                  t.color,
+                ]}
+              >
+                {t.initials}
+              </div>
+              <div>
+                <div class="font-display font-semibold text-midnight-blue">{t.name}</div>
+                <div class="text-xs text-medium-gray">{t.role}</div>
+              </div>
+            </footer>
+          </blockquote>
+        ))
+      }
+    </div>
+  </div>
+</section>
